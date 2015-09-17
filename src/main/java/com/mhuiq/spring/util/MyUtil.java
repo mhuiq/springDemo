@@ -3,6 +3,7 @@ package com.mhuiq.spring.util;
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.security.MessageDigest;
@@ -23,29 +24,39 @@ public class MyUtil {
 	 * @return 加密后的字符串
 	 * @throws NoSuchAlgorithmException
 	 */
-	public static String MD5encoding(File file) throws NoSuchAlgorithmException, IOException {
+	public static String MD5encoding(File file) {
 		if(null == file)
 			return null;
 		
-		InputStream is = new FileInputStream(file);
-		MessageDigest md5 = MessageDigest.getInstance("MD5");
 		try {
-			BufferedInputStream bis = new BufferedInputStream(is);;
-			byte[] bytes = new byte[1024];
-			int length;
-			while((length = bis.read(bytes)) > 0) {
-				md5.update(bytes, 0, length);
+			InputStream is = new FileInputStream(file);
+			MessageDigest md5 = MessageDigest.getInstance("MD5");
+			try {
+				BufferedInputStream bis = new BufferedInputStream(is);;
+				byte[] bytes = new byte[1024];
+				int length;
+				while((length = bis.read(bytes)) > 0) {
+					md5.update(bytes, 0, length);
+				}
+				bis.close();
+			} catch(IOException e) {
+				e.printStackTrace();
+				return null;
+			} finally {
+				if(null != is) {
+					is.close();
+				}
 			}
-			bis.close();
-		} catch(IOException e) {
-			e.printStackTrace();
-			return null;
-		} finally {
-			if(null != is) {
-				is.close();
-			}
+			return convertByteToHex(md5.digest());
+		} catch (FileNotFoundException e) {
+			System.out.println("找不到文件！");
+		} catch (NoSuchAlgorithmException e) {
+			System.out.println("MD5算法生成失败！");
+		} catch (IOException e) {
+			System.out.println("输入输出出错");
 		}
-		return convertByteToHex(md5.digest());
+		
+		return null;
 	}
 	
 	/**
@@ -54,10 +65,15 @@ public class MyUtil {
 	 * @return 加密后的字符串
 	 * @throws NoSuchAlgorithmException
 	 */
-	public static String MD5encoding(String rawStr) throws NoSuchAlgorithmException {
-		MessageDigest md5 = MessageDigest.getInstance("MD5");
-		md5.update(rawStr.getBytes());
-		return convertByteToHex(md5.digest());
+	public static String MD5encoding(String rawStr) {
+		try {
+			MessageDigest md5 = MessageDigest.getInstance("MD5");
+			md5.update(rawStr.getBytes());
+			return convertByteToHex(md5.digest());
+		} catch (NoSuchAlgorithmException e) {
+			System.out.println("MD5算法生成失败！");
+		}
+		return null;
 	}
 	
 	private static String convertByteToHex(byte[] bytes) {
