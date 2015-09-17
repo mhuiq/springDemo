@@ -23,6 +23,12 @@ public class User implements Serializable{
 	private String fullname;
 	@Column(name="password",length=50,nullable=false)
 	private String password;
+	@Column(name="sex",length=2)
+	private char sex;
+	@Column(name="mobile",length=20)
+	private String mobile;
+	@Column(name="address",length=250)
+	private String address;
 	
 	public void setUserID(long userID) {
 		this.userID = userID;
@@ -54,6 +60,30 @@ public class User implements Serializable{
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public char getSex() {
+		return sex;
+	}
+
+	public void setSex(char sex) {
+		this.sex = sex;
+	}
+
+	public String getMobile() {
+		return mobile;
+	}
+
+	public void setMobile(String mobile) {
+		this.mobile = mobile;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
 	}
 	
 	

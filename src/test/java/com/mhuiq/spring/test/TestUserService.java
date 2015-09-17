@@ -1,6 +1,5 @@
 package com.mhuiq.spring.test;
 
-import java.security.NoSuchAlgorithmException;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -24,11 +23,7 @@ public class TestUserService {
 		//user.setUserID(1L);
 		user.setUsername("Wong");
 		user.setFullname("test");
-		try {
-			user.setPassword(MyUtil.MD5encoding("123456789"));
-		} catch (NoSuchAlgorithmException e) {
-			e.printStackTrace();
-		}
+		user.setPassword(MyUtil.MD5encoding("123456789"));
 		userService.saveUser(user);
 		System.out.println("执行完成");
 	}
