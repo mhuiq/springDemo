@@ -14,10 +14,11 @@ import com.mhuiq.spring.util.MyUtil;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations=("classpath:ApplicationContext.xml"))
 public class TestUserService {
+	
 	@Autowired	
 	UserService userService;
 	
-	@Test
+	//@Test
 	public void testSaveUser() {
 		User user = new User();
 		//user.setUserID(1L);
@@ -26,6 +27,12 @@ public class TestUserService {
 		user.setPassword(MyUtil.MD5encoding("123456789"));
 		userService.saveUser(user);
 		System.out.println("执行完成");
+	}
+	
+	@Test
+	public void testFindUser() {
+		User user = userService.findByUsername("Wong");
+		System.out.println(user.getUserID());
 	}
 	
 }

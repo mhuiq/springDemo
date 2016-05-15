@@ -11,16 +11,20 @@ import java.util.Map;
 
 import org.junit.Test;
 
+import com.mhuiq.spring.model.User;
 import com.mhuiq.spring.util.MyUtil;
 
 public class TestOther {
+	
+	public static int classVar = 0;
 
-	@Test
+
+	//@Test
 	public  void TestMD5() {
 		System.out.println(MyUtil.MD5encoding("123456789"));
 	}
 	
-	@Test
+	//@Test
 	public void testArrayList() {
 		List<String> list = new ArrayList<String>();
 		list.add("b");
@@ -44,7 +48,7 @@ public class TestOther {
 		
 	}
 	
-	@Test
+	//@Test
 	public void testGeneric() {
 		List list = new ArrayList();
 		MyArrayList<String> myArrayList = new MyArrayList<String>();
@@ -52,11 +56,31 @@ public class TestOther {
 		System.out.println(myArrayList.get(9));
 	}
 	
-	@Test
+	//@Test
 	public void testHashMap() {
 		Map<String,String> hashMap = new HashMap<String, String>();
 		hashMap.put("first", "the first value");
 		System.out.println(hashMap.get("first"));
+	}
+	
+	@Test
+	public void testClassVar() {
+		long startTime = System.currentTimeMillis();
+		for (int i = 0; i < 999999999; ++i) {
+			classVar++;
+		}
+		System.out.println("类成员变量的耗时：" + (System.currentTimeMillis() - startTime));
+		
+	}
+	
+	@Test
+	public void testLocalVar() {
+		int localVar = 0;
+		long startTime = System.currentTimeMillis();
+		for (int i = 0; i < 999999999; ++i) {
+			localVar++;
+		}
+		System.out.println("局部变量的耗时：" + (System.currentTimeMillis()-startTime));
 	}
 	
 }

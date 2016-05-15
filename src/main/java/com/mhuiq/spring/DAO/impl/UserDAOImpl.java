@@ -1,40 +1,32 @@
 package com.mhuiq.spring.DAO.impl;
 
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
 
+import com.mhuiq.spring.DAO.GenericDAO;
 import com.mhuiq.spring.DAO.UserDAO;
 import com.mhuiq.spring.model.User;
 
 @Repository
-@Transactional(propagation=Propagation.SUPPORTS,readOnly=true)
 public class UserDAOImpl implements UserDAO {
-	
-	private SessionFactory sessionFactory;
-
 	@Autowired
-	public UserDAOImpl(SessionFactory sessionFactory) {
-		this.sessionFactory = sessionFactory;
-	}
+	GenericDAO<User> genericDAO;
 	
-	private Session currentSession() {
-		return sessionFactory.getCurrentSession();
-	}
-	
-	@Transactional(propagation=Propagation.REQUIRED,readOnly=false)
-	public void saveUser(User user) {
-		//Transaction tx = currentSession().beginTransaction();
-		currentSession().save(user);
-		//tx.commit();
+	public void saveUser(User user)  {
+		genericDAO.create(user);
 	}
 
 	public void deleteUser(String username) {
 		// TODO Auto-generated method stub
-
+		
 	}
+
+	public User findByUsername(String username) {
+		StringBuilder sb = new StringBuilder().append("from com.mhuiq.spring.model.User u where u.username = ?");
+		
+		return genericDAO.find(sb.toString(),username);
+	}
+	
 
 }

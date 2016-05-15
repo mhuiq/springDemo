@@ -64,6 +64,50 @@
 	</dependency>
     
     <dependency>
+		<groupId>org.springframework.security</groupId>
+		<artifactId>spring-security-core</artifactId>
+		<version>4.0.2.RELEASE</version>
+	</dependency>
+	
+	<dependency>
+		<groupId>org.springframework.security</groupId>
+		<artifactId>spring-security-web</artifactId>
+		<version>4.0.2.RELEASE</version>
+	</dependency>
+	
+	<dependency>
+		<groupId>org.springframework.security</groupId>
+		<artifactId>spring-security-config</artifactId>
+		<version>4.0.2.RELEASE</version>
+	</dependency>
+	
+	<dependency>
+		<groupId>org.springframework.security</groupId>
+		<artifactId>spring-security-taglibs</artifactId>
+		<version>4.0.2.RELEASE</version>
+	</dependency>
+	
+	<dependency>
+		<groupId>org.springframework.security</groupId>
+		<artifactId>spring-security-ldap</artifactId>
+		<version>4.0.2.RELEASE</version>
+	</dependency>
+	
+	<dependency>
+		<groupId>org.apache.shiro</groupId>
+		<artifactId>shiro-core</artifactId>
+		<version>1.2.4</version>
+	</dependency>
+	
+	
+	<dependency>
+		<groupId>log4j</groupId>
+		<artifactId>log4j</artifactId>
+		<version>1.2.17</version>
+	</dependency>
+		
+    
+    <dependency>
 		<groupId>mysql</groupId>
 		<artifactId>mysql-connector-java</artifactId>
 		<version>5.1.35</version>
@@ -72,7 +116,7 @@
     <dependency>
 		<groupId>org.hibernate</groupId>
 		<artifactId>hibernate-core</artifactId>
-		<version>5.0.0.Final</version>
+		<version>3.6.10.Final</version>
 	</dependency>	
     
     <dependency>
@@ -92,7 +136,16 @@
     	<artifactId>mockito-core</artifactId>
     	<version>2.0.31-beta</version>
     </dependency>
+    
+	<dependency>
+		<groupId>javax.servlet</groupId>
+		<artifactId>javax.servlet-api</artifactId>
+		<version>3.1.0</version>
+	</dependency>
   </dependencies>
+  
+  
+  
   <build>
     <finalName>SpringDemo</finalName>
   </build>

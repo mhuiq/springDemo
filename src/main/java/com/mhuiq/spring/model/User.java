@@ -24,11 +24,13 @@ public class User implements Serializable{
 	@Column(name="password",length=50,nullable=false)
 	private String password;
 	@Column(name="sex",length=2)
-	private char sex;
+	private String sex;
 	@Column(name="mobile",length=20)
 	private String mobile;
 	@Column(name="address",length=250)
 	private String address;
+	@Column(name="userRole",length=2)
+	private int userRole;
 	
 	public void setUserID(long userID) {
 		this.userID = userID;
@@ -62,11 +64,11 @@ public class User implements Serializable{
 		this.password = password;
 	}
 
-	public char getSex() {
+	public String getSex() {
 		return sex;
 	}
 
-	public void setSex(char sex) {
+	public void setSex(String sex) {
 		this.sex = sex;
 	}
 
@@ -84,6 +86,14 @@ public class User implements Serializable{
 
 	public void setAddress(String address) {
 		this.address = address;
+	}
+
+	public int getUserRole() {
+		return userRole;
+	}
+
+	public void setUserRole(int userRole) {
+		this.userRole = userRole;
 	}
 	
 	
